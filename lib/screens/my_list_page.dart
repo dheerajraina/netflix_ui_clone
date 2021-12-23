@@ -13,7 +13,18 @@ class _MyListState extends State<MyList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar:AppBar(
+        title: Center(
+         widthFactor:4.3,
+         child: Text(
+           "My List",
+           style: TextStyle(
+             fontSize: MediaQuery.of(context).size.width*0.05,
+           ),
+            
+           ),
+       ),
+      ),
       body: Center(
         child: Text("My List"),
       ),

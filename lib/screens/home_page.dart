@@ -5,6 +5,7 @@ import 'dart:math' as math;
 import 'package:netfllix_clone/screens/tv_shows.dart';
 import 'package:flutter/rendering.dart';
 
+import 'package:netfllix_clone/widgets/bottom_nav_bar.dart';
 
 
 class HomePage extends StatefulWidget{
@@ -15,6 +16,12 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<HomePage> {
+  List<String> movieImageSources=[
+  'https://www.pinkvilla.com/files/styles/home-page/public/spider_man_no_way_home_0.jpg?itok=075h0whU',
+  'https://i.ytimg.com/vi/qgaXzUnJ0nY/maxresdefault.jpg',
+
+  ];
+
 
   bool _showAppBar=false;
   bool _isScrollingDown=false;
@@ -386,6 +393,12 @@ class _HomePageState extends State<HomePage> {
                      shrinkWrap: true,
                      itemCount: 10,
                      itemBuilder: (context,index){
+                      //  if (index%2==0){
+                      //    var image=movieImageSources[1];
+                      //  }
+                      //  else{
+                      //    var image=movieImageSources[0]
+                      //  }
                        return Container(
                          height: 90,
                          width: MediaQuery.of(context).size.width*0.33,
@@ -395,6 +408,8 @@ class _HomePageState extends State<HomePage> {
                           // radius: 80,
                            maxRadius: 90,
                            backgroundColor: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+                           backgroundImage: index%2==0? NetworkImage(movieImageSources[0])
+                                            :NetworkImage(movieImageSources[1]),
                          ),
                        );
                      },),
@@ -439,17 +454,20 @@ class _HomePageState extends State<HomePage> {
                             //  color: Colors.red,
                                color:Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
                            ),
-                          //  child: Column(
-                          //    children: [
-                          //       Image.network(
-                          //        'https://m.media-amazon.com/images/M/MV5BN2ZmYjg1YmItNWQ4OC00YWM0LWE0ZDktYThjOTZiZjhhN2Q2XkEyXkFqcGdeQXVyNjgxNTQ3Mjk@._V1_.jpg',
-                          //         height: MediaQuery.of(context).size.width*0.5136,
-                          //         width:MediaQuery.of(context).size.width*0.7,
-                          //        fit: BoxFit.fill,
-                          //      ),
-                          //    ],
-                          //  ),
+                           child: Column(
+                             children: [
+                                Image.network(
+                                  index%2==0? movieImageSources[0]
+                                            :movieImageSources[1],
+                                //  'https://m.media-amazon.com/images/M/MV5BN2ZmYjg1YmItNWQ4OC00YWM0LWE0ZDktYThjOTZiZjhhN2Q2XkEyXkFqcGdeQXVyNjgxNTQ3Mjk@._V1_.jpg',
+                                  height: MediaQuery.of(context).size.width*0.5136,
+                                  width:MediaQuery.of(context).size.width*0.7,
+                                 fit: BoxFit.fill,
+                               ),
+                             ],
+                           ),
                          ) ,
+                         
                        );
                      },),
                  ),
@@ -550,10 +568,14 @@ class _HomePageState extends State<HomePage> {
                        );
                      },),
                  ),
+
+                 
                  ],
                ),
              ),
            ),
+
+           BtmNavBar(),
          ],
        ),
      ),

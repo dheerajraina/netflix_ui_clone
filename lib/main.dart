@@ -24,11 +24,11 @@ class MyApp extends StatelessWidget {
 debugShowCheckedModeBanner: false,
     // darkTheme: ThemeData(),
      theme:ThemeData(
-       primaryColorDark: Colors.black12,
+       primaryColorDark: Colors.black,
        brightness:Brightness.dark,
      ),
       home: HomePage(),     
-     
+      
     );
   }
 }
